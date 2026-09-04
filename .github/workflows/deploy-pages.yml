@@ -24,7 +24,7 @@ jobs:
           node-version: 20
       - name: Install dependencies
         run: npm ci
-      - name: Build (runs `next build`, output: 'export' writes ./out)
+      - name: "Build (runs `next build`, output: 'export' writes ./out)"
         run: npm run build
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
