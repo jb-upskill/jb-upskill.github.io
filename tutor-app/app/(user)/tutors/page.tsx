@@ -21,17 +21,7 @@ export default function TutorsPage() {
 
   return (
     <div className="mx-auto max-w-5xl px-6 py-16">
-      <div className="mb-10 text-center">
-        <h1 className="text-3xl font-bold text-ink sm:text-4xl">
-          Meet our tutors
-        </h1>
-        <p className="mt-3 text-ink-soft">
-          Every tutor here is someone Dana knows personally. Browse the
-          calendar below and pick an open time to book.
-        </p>
-      </div>
-
-      <div className="mb-10 flex flex-wrap justify-center gap-3">
+      <div className="mb-6 flex flex-wrap justify-center gap-3">
         {tutors.map((tutor) => (
           <Link
             key={tutor.id}
@@ -42,7 +32,7 @@ export default function TutorsPage() {
                 tutor_name: tutor.name,
               })
             }
-            className="group flex items-center gap-2 rounded-full border border-warm-200 bg-warm-100 py-1.5 pl-1.5 pr-4 transition-colors hover:border-accent-1"
+            className="flex items-center gap-2 rounded-full border border-warm-200 bg-warm-100 py-1.5 pl-1.5 pr-4"
           >
             <span
               className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-xs font-bold text-white"
@@ -50,9 +40,7 @@ export default function TutorsPage() {
             >
               {tutor.initials}
             </span>
-            <span className="text-sm font-medium text-ink group-hover:text-accent-1">
-              {tutor.name}
-            </span>
+            <span className="text-sm font-medium text-ink">{tutor.name}</span>
             <span className="hidden text-xs text-ink-soft sm:inline">
               &middot; {tutor.subjects.join(", ")}
             </span>
@@ -109,7 +97,7 @@ export default function TutorsPage() {
                                   tutor_name: tutor.name,
                                 })
                               }
-                              className="flex items-center gap-1.5 rounded-full px-2 py-1 text-xs font-medium text-white transition-transform hover:-translate-y-0.5"
+                              className="flex items-center gap-1.5 rounded-full px-2 py-1 text-xs font-medium text-white"
                               style={{ backgroundColor: tutor.color }}
                             >
                               <span className="truncate">{tutor.name}</span>
