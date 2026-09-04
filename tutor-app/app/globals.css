@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+@theme {
+  /* Warm, friendly, light palette -- not dark, not corporate. */
+  --color-warm-50: #fdfaf5;
+  --color-warm-100: #faf3e9;
+  --color-warm-200: #f3e6d3;
+  --color-warm-300: #e8d3b3;
+
+  --color-ink: #3f3226;
+  --color-ink-soft: #6b5c4c;
+
+  --color-accent-1: #e8874f; /* warm coral/orange */
+  --color-accent-1-soft: #fbe4d3;
+  --color-accent-2: #4f9e8f; /* friendly teal */
+  --color-accent-2-soft: #daf0ea;
+  --color-accent-3: #d97ba0; /* soft pink */
+  --color-accent-3-soft: #f9e0eb;
+
+  --radius-card: 1.25rem;
+}
+
+body {
+  background: var(--color-warm-50);
+}
