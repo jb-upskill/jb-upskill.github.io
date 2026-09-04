@@ -2,9 +2,10 @@
 
 import Link from "next/link";
 import { useBooking } from "@/lib/booking-context";
+import { captureEvent } from "@/lib/posthog-provider";
 
 export default function BookingsPage() {
-  const { bookings } = useBooking();
+  const { bookings, cancelBooking } = useBooking();
 
   return (
     <div className="mx-auto max-w-3xl px-6 py-16">
@@ -36,12 +37,27 @@ export default function BookingsPage() {
                   {booking.day} &middot; {booking.time}
                 </p>
               </div>
-              <Link
-                href={`/tutors/${booking.tutorId}`}
-                className="text-sm font-medium text-accent-2"
-              >
-                View tutor
-              </Link>
+              <div className="flex items-center gap-4">
+                <Link
+                  href={`/tutors/${booking.tutorId}`}
+                  className="text-sm font-medium text-accent-2"
+                >
+                  View tutor
+                </Link>
+                <button
+                  onClick={() => {
+                    cancelBooking(booking.id);
+                    captureEvent("booking_cancelled", {
+                      tutor_id: booking.tutorId,
+                      tutor_name: booking.tutorName,
+                      slot_time: `${booking.day} ${booking.time}`,
+                    });
+                  }}
+                  className="rounded-full border border-warm-300 px-3 py-1.5 text-sm font-medium text-ink-soft transition-colors hover:border-accent-3 hover:text-accent-3"
+                >
+                  Cancel
+                </button>
+              </div>
             </li>
           ))}
         </ul>

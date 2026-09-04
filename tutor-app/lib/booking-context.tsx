@@ -32,6 +32,7 @@ type BookingContextValue = {
   bookings: Booking[];
   getTutor: (tutorId: string) => Tutor | undefined;
   bookSlot: (tutorId: string, slotId: string) => Booking | null;
+  cancelBooking: (bookingId: string) => void;
 };
 
 const BookingContext = createContext<BookingContextValue | null>(null);
@@ -100,9 +101,36 @@ export function BookingProvider({ children }: { children: React.ReactNode }) {
     return booking;
   }, []);
 
+  const cancelBooking = useCallback((bookingId: string) => {
+    setState((prev) => {
+      const booking = prev.bookings.find((b) => b.id === bookingId);
+      if (!booking) return prev;
+
+      return {
+        tutors: prev.tutors.map((t) =>
+          t.id !== booking.tutorId
+            ? t
+            : {
+                ...t,
+                slots: t.slots.map((s) =>
+                  s.id === booking.slotId ? { ...s, booked: false } : s
+                ),
+              }
+        ),
+        bookings: prev.bookings.filter((b) => b.id !== bookingId),
+      };
+    });
+  }, []);
+
   const value = useMemo(
-    () => ({ tutors: state.tutors, bookings: state.bookings, getTutor, bookSlot }),
-    [state.tutors, state.bookings, getTutor, bookSlot]
+    () => ({
+      tutors: state.tutors,
+      bookings: state.bookings,
+      getTutor,
+      bookSlot,
+      cancelBooking,
+    }),
+    [state.tutors, state.bookings, getTutor, bookSlot, cancelBooking]
   );
 
   return (

@@ -5,6 +5,25 @@ export type Slot = {
   booked: boolean;
 };
 
+export const DAY_ORDER = [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+];
+
+export function timeToMinutes(time: string): number {
+  const match = time.match(/^(\d+):(\d+)\s*(AM|PM)$/i);
+  if (!match) return 0;
+  const [, hourStr, minuteStr, meridiem] = match;
+  let hour = parseInt(hourStr, 10) % 12;
+  if (meridiem.toUpperCase() === "PM") hour += 12;
+  return hour * 60 + parseInt(minuteStr, 10);
+}
+
 export type Tutor = {
   id: string;
   name: string;
