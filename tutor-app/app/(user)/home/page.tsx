@@ -4,10 +4,13 @@ export default function HomePage() {
   return (
     <div className="mx-auto max-w-3xl px-6 py-16">
       <section className="text-center">
-        <h1 className="text-4xl font-bold leading-tight text-ink sm:text-5xl">
+        <p className="text-sm font-semibold uppercase tracking-wide text-accent-1">
+          ABC Tutoring
+        </p>
+        <h1 className="mt-2 text-4xl font-bold leading-tight text-ink sm:text-5xl">
           Tutoring that feels like a friend helping out, not a test-prep factory.
         </h1>
-        <p className="mx-auto mt-5 max-w-xl text-lg text-ink-soft">
+        <p className="mx-auto mt-5 max-w-xl text-base text-ink-soft">
           ABC Tutoring connects your student with a caring, local tutor for
           one-on-one help in math, reading, science, and more &mdash; no
           franchise scripts, no pressure, just real progress.
