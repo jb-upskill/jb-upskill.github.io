@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { useBooking } from "@/lib/booking-context";
 
 const links = [
-  { href: "/home", label: "Home" },
+  { href: "/", label: "Home" },
   { href: "/tutors", label: "Find a tutor" },
   { href: "/bookings", label: "My bookings" },
 ];
@@ -17,7 +17,7 @@ export function NavBar() {
   return (
     <header className="border-b border-warm-200 bg-warm-50/80 backdrop-blur">
       <nav className="mx-auto flex max-w-5xl items-center justify-between gap-4 px-6 py-4">
-        <Link href="/home" className="text-lg font-semibold text-ink">
+        <Link href="/" className="text-lg font-semibold text-ink">
           ABC Tutoring
         </Link>
         <div className="flex items-center gap-1 sm:gap-2">
